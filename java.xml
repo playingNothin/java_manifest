@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Moto G20 (java) LineageOS 18.1 bring-up manifest.
+
+Usage:
+    repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --git-lfs
+    mkdir -p .repo/local_manifests
+    curl -o .repo/local_manifests/java.xml https://raw.githubusercontent.com/playingNothin/java_manifest/master/java.xml
+    repo sync -c -j8
+
+Places the Moto G20 device, vendor, kernel and MotoActions trees, and swaps
+every AOSP/Lineage project that carries java bring-up modifications for the
+java fork. Everything else syncs from the standard LineageOS 18.1 manifest.
+-->
+<manifest>
+  <remote name="java" fetch="https://github.com/playingNothin" />
+
+  <!-- forks carrying java bring-up commits on top of lineage-18.1 -->
+  <remove-project name="LineageOS/android_system_core" />
+  <remove-project name="LineageOS/android_build" />
+  <remove-project name="LineageOS/android_frameworks_av" />
+  <remove-project name="LineageOS/android_frameworks_opt_net_wifi" />
+  <remove-project name="LineageOS/android_hardware_interfaces" />
+  <remove-project name="LineageOS/android_system_sepolicy" />
+  <remove-project name="LineageOS/android_vendor_lineage" />
+  <remove-project name="LineageOS/android_hardware_ril" />
+  <remove-project name="LineageOS/android_external_boringssl" />
+  <remove-project name="LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9" />
+
+  <project path="system/core" name="java_system_core" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="build/make" name="java_build_make" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="frameworks/av" name="java_frameworks_av" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="frameworks/opt/net/wifi" name="java_frameworks_opt_net_wifi" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="hardware/interfaces" name="java_hardware_interfaces" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="system/sepolicy" name="java_system_sepolicy" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="vendor/lineage" name="java_vendor_lineage" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="hardware/ril" name="java_hardware_ril" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="external/boringssl" name="java_external_boringssl" remote="java" revision="refs/heads/lineage-18.1" />
+  <project path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" name="java_prebuilts_gcc_aarch64_4_9" remote="java" revision="refs/heads/lineage-18.1" />
+
+  <!-- device projects -->
+  <project path="device/motorola/java" name="java_motorola_device" remote="java" revision="refs/heads/master" />
+  <project path="vendor/motorola/java" name="java_motorola_vendor" remote="java" revision="refs/heads/master" />
+  <project path="kernel/motorola/java" name="java_motorola_kernel" remote="java" revision="refs/heads/master" />
+  <project path="packages/apps/MotoActions" name="java_packages_apps_MotoActions" remote="java" revision="refs/heads/android-11" />
+</manifest>

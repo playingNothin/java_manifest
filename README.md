@@ -29,3 +29,7 @@ Forks:
 - hardware/ril
 - external/boringssl
 - prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+
+## Credits
+FelipeCH: Testing the tree source
+Motorola & Unisoc: Kernel Sources
